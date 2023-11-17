@@ -1,11 +1,8 @@
-import { random } from 'remotion'
-import { interpolate } from 'remotion'
-import { useEffect, useMemo } from 'react'
-import { useCurrentFrame } from 'remotion'
-import { useRef } from 'react'
-import { InstancedMesh, Object3D, PointLight } from 'three'
+import { useEffect, useMemo, useRef } from 'react'
+import { random, interpolate, useCurrentFrame } from 'remotion'
+import { AmbientLight, InstancedMesh, Object3D } from 'three'
 
-export const Dust = ({ count = 60 }: { count?: number }) => {
+export const Dust = ({ count = 200 }: { count?: number }) => {
   const frame = useCurrentFrame()
   const mesh = useRef<InstancedMesh>(null)
 
@@ -18,7 +15,7 @@ export const Dust = ({ count = 60 }: { count?: number }) => {
     for (let i = 0; i < count; i++) {
       const time = interpolate(random('time' + i), [0, 1], [0, 100])
       const factor = interpolate(random('factor' + i), [0, 1], [10, 100])
-      const speed = interpolate(random('speed' + i), [0, 1], [0.002, 0.001]) / 2
+      const speed = interpolate(random('speed' + i), [0, 1], [0.015, 0.005]) / 2
       const x = interpolate(random('x' + i), [0, 1], [-50, 50])
       const y = interpolate(random('y' + i), [0, 1], [-50, 50])
       const z = interpolate(random('z' + i), [0, 1], [-50, 10])
@@ -35,8 +32,8 @@ export const Dust = ({ count = 60 }: { count?: number }) => {
 
     if (!current) {
       return
-    }
-    // Run through the randomized data to calculate some movement
+    } 
+
     particles.forEach((particle, index) => {
       const { factor, speed, x, y, z } = particle
 
@@ -54,7 +51,7 @@ export const Dust = ({ count = 60 }: { count?: number }) => {
       // Derive an oscillating value which will be used
       // for the particle size and rotation
       const s = Math.cos(t)
-      dummy.scale.set(s * 2, s * 2, s * 2)
+      dummy.scale.set(s, s, s)
       dummy.rotation.set(s * 5, s * 5, s * 5)
       dummy.updateMatrix()
 
@@ -66,7 +63,8 @@ export const Dust = ({ count = 60 }: { count?: number }) => {
 
   return (
     <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
-      <planeBufferGeometry args={[0.2, 0.2, 1, 1]} />
+      <circleBufferGeometry args={[0.2, 10, 0, Math.PI * 2]} />
+      <meshBasicMaterial transparent opacity={0.7} />
     </instancedMesh>
   )
 }
