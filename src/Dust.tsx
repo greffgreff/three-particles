@@ -54,7 +54,7 @@ export const Dust = ({ count = 60 }: { count?: number }) => {
       // Derive an oscillating value which will be used
       // for the particle size and rotation
       const s = Math.cos(t)
-      dummy.scale.set(s, s, s)
+      dummy.scale.set(s * 2, s * 2, s * 2)
       dummy.rotation.set(s * 5, s * 5, s * 5)
       dummy.updateMatrix()
 
