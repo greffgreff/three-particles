@@ -15,6 +15,7 @@
 		"@remotion/cli": "4.0.71",
 		"@remotion/eslint-config": "4.0.71",
 		"@remotion/media-utils": "4.0.71",
+		"@remotion/motion-blur": "^4.0.71",
 		"@remotion/renderer": "4.0.71",
 		"@remotion/three": "4.0.71",
 		"eslint": "^7.15.0",

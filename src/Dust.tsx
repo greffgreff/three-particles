@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { random, interpolate, useCurrentFrame } from 'remotion'
-import { AmbientLight, InstancedMesh, Object3D } from 'three'
+import { InstancedMesh, Object3D } from 'three'
 
-export const Dust = ({ count = 200 }: { count?: number }) => {
+export const Dust = ({ count = 100 }: { count?: number }) => {
   const frame = useCurrentFrame()
   const mesh = useRef<InstancedMesh>(null)
 
@@ -32,39 +32,33 @@ export const Dust = ({ count = 200 }: { count?: number }) => {
 
     if (!current) {
       return
-    } 
+    }
 
     particles.forEach((particle, index) => {
       const { factor, speed, x, y, z } = particle
-
-      // Update the particle time
       const t = frame * speed
 
-      // Update the particle position based on the time
-      // This is mostly random trigonometry functions to oscillate around the (x, y, z) point
       dummy.position.set(
         x + Math.cos((t / 10) * factor) + (Math.sin(t * 1) * factor) / 10,
         y + Math.sin((t / 10) * factor) + (Math.cos(t * 2) * factor) / 10,
         z + Math.cos((t / 10) * factor) + (Math.sin(t * 3) * factor) / 10,
       )
 
-      // Derive an oscillating value which will be used
-      // for the particle size and rotation
       const s = Math.cos(t)
-      dummy.scale.set(s, s, s)
-      dummy.rotation.set(s * 5, s * 5, s * 5)
-      dummy.updateMatrix()
+      dummy.scale.set(s / 2, s / 2, s / 2)
+      // dummy.rotation.set(s * 5, s * 5, s * 5)
 
-      // And apply the matrix to the instanced item
+      dummy.updateMatrix()
       current.setMatrixAt(index, dummy.matrix)
     })
+
     current.instanceMatrix.needsUpdate = true
   }, [dummy, particles, frame])
 
   return (
     <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
-      <circleBufferGeometry args={[0.2, 10, 0, Math.PI * 2]} />
-      <meshBasicMaterial transparent opacity={0.7} />
+      <circleBufferGeometry args={[0.3, 10, 0, Math.PI * 2]} />
+      <meshBasicMaterial transparent opacity={0.9} />
     </instancedMesh>
   )
 }
