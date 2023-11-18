@@ -4,7 +4,7 @@ interface IntroProps {
   onFade?: (fade: number) => void
 }
 
-export const Intro = ({ onFade }: IntroProps) => {
+export const Introduction = ({ onFade }: IntroProps) => {
   const frame = useCurrentFrame()
   const fadeDuration = 100
 

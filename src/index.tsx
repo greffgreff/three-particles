@@ -1,4 +1,6 @@
 import { registerRoot } from 'remotion'
-import { Video } from './Video'
+import { LoadSkia } from '@shopify/react-native-skia/src/web'
 
-registerRoot(Video)
+LoadSkia()
+  .then(async () => (await import('./Video')).Video)
+  .then(registerRoot)

@@ -9,7 +9,6 @@ export const Dust = ({ count = 100 }: { count?: number }) => {
   const image =
     'https://cdnb.artstation.com/p/assets/images/images/030/755/647/large/jasmin-habezai-fekri-landscape1.jpg?1601551984'
 
-  // Generate some random positions, speed factors and timings
   const particles = useMemo(() => {
     const temp = []
     for (let i = 0; i < count; i++) {
@@ -57,8 +56,8 @@ export const Dust = ({ count = 100 }: { count?: number }) => {
 
   return (
     <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
-      <circleBufferGeometry args={[0.3, 10, 0, Math.PI * 2]} />
-      <meshBasicMaterial transparent opacity={0.9} />
+      <circleGeometry args={[0.3, 10, 0, Math.PI * 2]} />
+      <meshBasicMaterial transparent opacity={0.5} />
     </instancedMesh>
   )
 }

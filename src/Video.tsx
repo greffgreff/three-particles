@@ -1,10 +1,10 @@
 import { Composition } from 'remotion'
-import { Scene } from './Scene'
+import { Scene } from './scenes/Scene'
 
 export const Video = () => {
   return (
     <Composition
-      id="Scene"
+      id="scene"
       component={Scene}
       durationInFrames={60 * 60 * 2}
       fps={60}

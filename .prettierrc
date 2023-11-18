@@ -3,13 +3,5 @@
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
   "useTabs": false,
-  "semi": false,
-  "overrides": [
-    {
-      "files": ["*.yml"],
-      "options": {
-        "singleQuote": false
-      }
-    }
-  ]
+  "semi": false
 }
