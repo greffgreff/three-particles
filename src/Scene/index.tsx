@@ -17,7 +17,7 @@ export const Scene = () => {
   const frame = useCurrentFrame()
   const [palette, setPalette] = useState<string[]>()
 
-  const blur = interpolateByDuration(frame, fps, 2, 2, [5, 0])
+  const blur = interpolateByDuration(frame, fps, 2, 3, [10, 0])
   const scale = interpolateByDuration(frame, fps, 0, 7, [0.5, 0.6])
 
   return (
