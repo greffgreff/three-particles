@@ -54,7 +54,7 @@ export const Dust = ({ count = 100 }: { count?: number }) => {
 
   return (
     <instancedMesh ref={mesh} args={[undefined, undefined, count]}>
-      <circleGeometry args={[0.3, 10, 0, Math.PI * 2]} />
+      <circleBufferGeometry args={[0.3, 10, 0, Math.PI * 2]} />
       <meshBasicMaterial transparent opacity={0.5} />
     </instancedMesh>
   )
