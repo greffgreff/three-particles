@@ -1,5 +1,5 @@
 import { Composition } from 'remotion'
-import { Scene } from './scenes/Scene'
+import { Scene } from './Scene'
 
 export const Video = () => {
   return (
