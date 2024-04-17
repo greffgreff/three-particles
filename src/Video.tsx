@@ -6,7 +6,7 @@ export const Video = () => {
     <Composition
       id="scene"
       component={Scene}
-      durationInFrames={60 * 60 * 2}
+      durationInFrames={60 * 20}
       fps={60}
       width={1920}
       height={1080}
